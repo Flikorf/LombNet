@@ -1,0 +1,63 @@
+body {
+  margin: 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f4f4f4; /* Цвет фона */
+}
+
+h1 {
+  color: #333; /* Цвет текста заголовка */
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  margin: 20px;
+  background-color: #fff; /* Цвет фона формы */
+  padding: 20px;
+  border-radius: 8px; /* Закруглим углы формы */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Добавим тень */
+}
+
+label {
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column; /* Поставим элементы формы друг под друга */
+}
+
+input {
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc; /* Добавим границу для инпутов */
+  border-radius: 4px; /* Закруглим углы инпутов */
+}
+
+button {
+  background-color: #3e4a7a;
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px; /* Закруглим углы кнопки */
+}
+
+button:hover {
+  background-color: #22335f;
+}
+
+p a {
+  color: #3498db;
+  text-decoration: none;
+  margin-top: 10px;
+}
+
+p a:hover {
+  text-decoration: underline;
+}
