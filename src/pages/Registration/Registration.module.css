@@ -61,3 +61,31 @@ p a {
 p a:hover {
   text-decoration: underline;
 }
+
+.container {
+  position: relative;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 300px;
+  background-color: #f4f4f4;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  z-index: 1000;
+}
+
+.modalContent {
+  position: relative;
+}
+
+.close {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  cursor: pointer;
+}

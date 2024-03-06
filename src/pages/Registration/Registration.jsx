@@ -1,15 +1,18 @@
-import { Link } from "react-router-dom";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import styles from "./Registration.module.css";
+import Modal from "../../components/Modal/Modal";
 
 const Registration = () => {
   const [userData, setUserData] = useState({
     username: "",
-    phoneNumber: "",
+    number: "",
     email: "",
     password: "",
   });
+
+  const [modalContent, setModalContent] = useState(null);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -20,21 +23,45 @@ const Registration = () => {
   };
 
   const handleRegistration = async () => {
+    // Проверка на заполненность всех полей
+    if (
+      !userData.username ||
+      !userData.number ||
+      !userData.email ||
+      !userData.password
+    ) {
+      setModalContent({
+        title: "Ошибка",
+        body: "Все поля должны быть заполнены.",
+        type: "error",
+      });
+      return;
+    }
+
     try {
-      // Отправляем запрос на регистрацию
       const response = await axios.post(
-        "https://gc.kis.v2.scr.kaspersky-labs.com/8AA5EC79-9B5B-4CD8-AFF6-52A5F7BF9129/920C987C-5419-4465-92CD-99D4CFA42EB0/to/wsm.sessionDeactivated?tm=2024-03-06T05%3A22%3A22.133Z",
+        "https://localhost:7211/api/Authorization/Registration",
         userData
       );
 
-      // Обработка успешной регистрации
-      console.log("Успешная регистрация", response.data);
-
-      // Дополнительные действия, например, перенаправление на страницу входа
+      setModalContent({
+        title: "Успешная регистрация",
+        body: `Пользователь ${userData.username} успешно зарегистрирован.`,
+        type: "success",
+      });
     } catch (error) {
-      // Обработка ошибок регистрации
-      console.error("Ошибка регистрации", error);
+      setModalContent({
+        title: "Ошибка регистрации",
+        body:
+          error.response?.data?.message ||
+          "Произошла ошибка во время регистрации.",
+        type: "error",
+      });
     }
+  };
+
+  const closeModal = () => {
+    setModalContent(null);
   };
 
   return (
@@ -49,7 +76,7 @@ const Registration = () => {
           <br />
           <label>
             Номер телефона:
-            <input type="tel" name="phoneNumber" onChange={handleInputChange} />
+            <input type="tel" name="number" onChange={handleInputChange} />
           </label>
           <br />
           <label>
@@ -73,6 +100,13 @@ const Registration = () => {
         <p>
           Уже есть аккаунт? <Link to="/login">Войти</Link>.
         </p>
+        {modalContent && (
+          <Modal onClose={closeModal}>
+            <h2>{modalContent.title}</h2>
+            <p>{modalContent.body}</p>
+            <button onClick={closeModal}>Закрыть</button>
+          </Modal>
+        )}
       </div>
     </div>
   );
