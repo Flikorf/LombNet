@@ -40,7 +40,7 @@ const Registration = () => {
 
     try {
       const response = await axios.post(
-        "https://localhost:7211/api/Authorization/Registration",
+        "https://r941rsd2-7211.euw.devtunnels.ms/api/Authorization/Registration",
         userData
       );
 
@@ -65,35 +65,55 @@ const Registration = () => {
   };
 
   return (
-    <div>
-      <div className={styles.container}>
-        <h1>Регистрация</h1>
-        <form className={styles.form}>
-          <label>
+    <div className={styles.container}>
+      <div className={styles.registrationContainer}>
+        <h1 className={styles.registrationTitle}>Регистрация</h1>
+        <form className={styles.registrationForm}>
+          <label className={styles.formLabel}>
             Имя:
-            <input type="text" name="username" onChange={handleInputChange} />
+            <input
+              type="text"
+              name="username"
+              onChange={handleInputChange}
+              className={styles.input}
+            />
           </label>
           <br />
-          <label>
+          <label className={styles.formLabel}>
             Номер телефона:
-            <input type="tel" name="number" onChange={handleInputChange} />
+            <input
+              type="tel"
+              name="number"
+              onChange={handleInputChange}
+              className={styles.input}
+            />
           </label>
           <br />
-          <label>
+          <label className={styles.formLabel}>
             Email:
-            <input type="email" name="email" onChange={handleInputChange} />
+            <input
+              type="email"
+              name="email"
+              onChange={handleInputChange}
+              className={styles.input}
+            />
           </label>
           <br />
-          <label>
+          <label className={styles.formLabel}>
             Пароль:
             <input
               type="password"
               name="password"
               onChange={handleInputChange}
+              className={styles.input}
             />
           </label>
           <br />
-          <button type="button" onClick={handleRegistration}>
+          <button
+            type="button"
+            onClick={handleRegistration}
+            className={styles.button}
+          >
             Зарегистрироваться
           </button>
         </form>
@@ -101,10 +121,14 @@ const Registration = () => {
           Уже есть аккаунт? <Link to="/login">Войти</Link>.
         </p>
         {modalContent && (
-          <Modal onClose={closeModal}>
-            <h2>{modalContent.title}</h2>
+          <Modal onClose={closeModal} className={styles.modal}>
+            <div className={styles.modal_item}>
+              <h2>{modalContent.title}</h2>
+              <button onClick={closeModal} className={styles.closeButton}>
+                X
+              </button>
+            </div>
             <p>{modalContent.body}</p>
-            <button onClick={closeModal}>Закрыть</button>
           </Modal>
         )}
       </div>

@@ -12,8 +12,9 @@ const Header = () => {
   return (
     <>
       <header className={styles.header}>
-        <Link to="/">
+        <Link to="/" className={styles.logo}>
           <img src="logo.svg" alt="" />
+          <div>LombNet</div>
         </Link>
         {user ? (
           <>
@@ -26,7 +27,6 @@ const Header = () => {
           </Link>
         )}
       </header>
-      <hr />
     </>
   );
 };

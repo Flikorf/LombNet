@@ -3,7 +3,17 @@
   justify-content: space-between;
   align-items: center;
   height: 60px;
-  margin-inline: 120px;
+  border-bottom: 3px solid #f9f9f9;
+  padding: 20px 120px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  font-size: 32px;
+  text-decoration: none;
+  color: #22335f;
 }
 
 img {
@@ -11,18 +21,18 @@ img {
   height: 50px;
 }
 
-hr {
-  border: 2px solid #f2d00c;
-  margin: 0;
-}
-
 .login {
-  font-weight: 600;
-  background-color: #f2d00c;
-  color: #3e4a7a;
+  font-family: "Roboto", sans-serif;
+  border: 2px solid #3e4a7a;
+  color: #fff;
+  background-color: #3e4a7a;
+  border-radius: 10px;
+  width: 120px;
+  height: 40px;
 }
 
 .login:hover {
-  background-color: #3e4a7a;
-  color: #f2d00c;
+  background-color: #22335f;
+  border: 2px solid #22335f;
+  color: #fff;
 }

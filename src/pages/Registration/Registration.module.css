@@ -1,54 +1,54 @@
-body {
-  margin: 0;
-}
-
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-color: #f4f4f4; /* Цвет фона */
+  background-color: #f4f4f4;
 }
 
-h1 {
-  color: #333; /* Цвет текста заголовка */
+.registrationContainer {
+  position: relative;
+  text-align: center; /* Center the text within the container */
 }
 
-form {
+.registrationTitle {
+  color: #333;
+}
+
+.registrationForm {
   display: flex;
   flex-direction: column;
   width: 300px;
   margin: 20px;
-  background-color: #fff; /* Цвет фона формы */
+  background-color: #fff;
   padding: 20px;
-  border-radius: 8px; /* Закруглим углы формы */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Добавим тень */
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-label {
+.formLabel {
   margin-bottom: 10px;
-  display: flex;
-  flex-direction: column; /* Поставим элементы формы друг под друга */
+  text-align: left;
 }
 
-input {
+.input {
   padding: 8px;
   margin-bottom: 10px;
-  border: 1px solid #ccc; /* Добавим границу для инпутов */
-  border-radius: 4px; /* Закруглим углы инпутов */
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
-button {
+.button {
   background-color: #3e4a7a;
   color: white;
   padding: 10px;
   border: none;
   cursor: pointer;
-  border-radius: 4px; /* Закруглим углы кнопки */
+  border-radius: 4px;
 }
 
-button:hover {
+.button:hover {
   background-color: #22335f;
 }
 
@@ -62,10 +62,6 @@ p a:hover {
   text-decoration: underline;
 }
 
-.container {
-  position: relative;
-}
-
 .modal {
   display: none;
   position: fixed;
@@ -77,15 +73,24 @@ p a:hover {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 10px;
   z-index: 1000;
+  display: flex; /* Добавлено свойство flex */
+  justify-content: space-between; /* Распределение элементов с промежутками между ними */
+  align-items: center; /* Выравнивание элементов по центру вертикально */
+}
+
+.modal_item {
+  display: flex;
+  justify-content: space-between;
 }
 
 .modalContent {
   position: relative;
 }
 
-.close {
-  position: absolute;
-  top: 5px;
-  right: 5px;
+.closeButton {
   cursor: pointer;
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: #333;
 }

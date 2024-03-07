@@ -24,7 +24,7 @@ const Login = () => {
   const handleLogin = async () => {
     try {
       const response = await axios.post(
-        "https://localhost:7211/api/Authorization/Login",
+        "https://r941rsd2-7211.euw.devtunnels.ms/api/Authorization/Login",
         userData
       );
 
@@ -43,13 +43,18 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <div className={styles.container}>
+    <div className={styles.container}>
+      <div className={styles.content}>
         <h1>Войти</h1>
         <form className={styles.form}>
           <label>
             Имя:
-            <input type="text" name="username" onChange={handleInputChange} />
+            <input
+              type="text"
+              name="username"
+              onChange={handleInputChange}
+              className={styles.input}
+            />
           </label>
           <br />
           <label>
@@ -58,15 +63,20 @@ const Login = () => {
               type="password"
               name="password"
               onChange={handleInputChange}
+              className={styles.input}
             />
           </label>
           <br />
-          <button type="button" onClick={handleLogin}>
+          <button type="button" onClick={handleLogin} className={styles.button}>
             Войти
           </button>
         </form>
         <p>
-          Или вы можете <Link to="/registration">зарегистрироваться</Link>.
+          Или вы можете{" "}
+          <Link to="/registration" className={styles.link}>
+            зарегистрироваться
+          </Link>
+          .
         </p>
       </div>
     </div>
