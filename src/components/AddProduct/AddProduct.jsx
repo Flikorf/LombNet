@@ -9,6 +9,7 @@ const AddProduct = ({ onProductAdded }) => {
     price: 0,
     status: "Есть в наличии",
     isDeleted: false,
+    lombardId: "123",
     brand: "",
     image: null,
   });
@@ -48,7 +49,7 @@ const AddProduct = ({ onProductAdded }) => {
           method: "POST",
           body: formDataToSend,
           headers: {
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NWU4NGQ5MzEyMzZjMTU3MTAxYjJhMzkiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJVc2VyIiwiZXhwIjoxNzEwMjM3NjQ3LCJpc3MiOiJNeUF1dGhTZXJ2ZXIiLCJhdWQiOiJNeUF1dGhDbGllbnQifQ.M_GNfuSZUsEK236OIe-KGA3VrWuNs62Xp9dhaskrDmQ`, // Правильное свойство
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NWU4NGQ5MzEyMzZjMTU3MTAxYjJhMzkiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJVc2VyIiwiZXhwIjoxNzEwMjQ4OTg4LCJpc3MiOiJNeUF1dGhTZXJ2ZXIiLCJhdWQiOiJNeUF1dGhDbGllbnQifQ.ngEQC_SSAFXVouSrrpWlOhToFRtmyNte6xlGSi5Fago`, // Правильное свойство
           },
         }
       );
