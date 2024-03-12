@@ -40,7 +40,7 @@ const Registration = () => {
 
     try {
       const response = await axios.post(
-        "https://r941rsd2-7211.euw.devtunnels.ms/api/Authorization/Registration",
+        "https://localhost:7211/api/Authorization/Registration",
         userData
       );
 
@@ -52,9 +52,9 @@ const Registration = () => {
     } catch (error) {
       setModalContent({
         title: "Ошибка регистрации",
-        body:
-          error.response?.data?.message ||
-          "Произошла ошибка во время регистрации.",
+        body: error.response?.data?.message
+          ? error.response.data.message
+          : "Произошла ошибка во время регистрации.",
         type: "error",
       });
     }

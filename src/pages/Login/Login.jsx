@@ -13,22 +13,37 @@ const Login = () => {
   const { loginUser } = useUser();
   const navigate = useNavigate();
 
+  // Состояние для хранения значения пароля с небольшой задержкой
+  const [passwordWithDelay, setPasswordWithDelay] = useState("");
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setUserData((prevData) => ({
       ...prevData,
       [name]: value,
     }));
+
+    // Устанавливаем значение пароля с задержкой (например, 500 миллисекунд)
+    setTimeout(() => {
+      setPasswordWithDelay(value);
+    }, 500);
   };
 
   const handleLogin = async () => {
     try {
+      // Используем значение пароля с задержкой
       const response = await axios.post(
-        "https://r941rsd2-7211.euw.devtunnels.ms/api/Authorization/Login",
-        userData
+        "https://localhost:7211/api/Authorization/Login",
+        { ...userData, password: passwordWithDelay }
       );
 
+      const authToken = response.data.token;
+
+      // Сохраняем токен в localStorage
+      localStorage.setItem("authToken", authToken);
+
       console.log("Вход выполнен успешно", response.data);
+      console.log(response.data.UserId);
 
       loginUser(response.data);
 
