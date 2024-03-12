@@ -46,14 +46,21 @@ const Phone = ({ addedProductName }) => {
         return;
       }
 
-      const response = await fetch(
-        `https://localhost:7211/api/Fuji/search?${filterParams}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      let apiUrl = "https://localhost:7211/api/Fuji/products";
+
+      if (filterParams.includes("keywords")) {
+        apiUrl = `https://localhost:7211/api/Fuji/search?${filterParams}`;
+      } else if (filterParams.includes("brands")) {
+        apiUrl = `https://localhost:7211/api/Fuji/products/brand/${
+          filterParams.split("=")[1]
+        }`;
+      }
+
+      const response = await fetch(apiUrl, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
       if (response.ok) {
         const data = await response.json();

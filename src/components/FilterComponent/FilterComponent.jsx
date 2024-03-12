@@ -1,6 +1,6 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
-import styles from "./FilterComponent.module.css"; // Подключаем модуль стилей
+import styles from "./FilterComponent.module.css";
 
 const FilterComponent = ({ onFilterChange }) => {
   const [filterValue, setFilterValue] = useState("");
@@ -26,10 +26,15 @@ const FilterComponent = ({ onFilterChange }) => {
       (brand) => brandFilters[brand]
     );
 
-    let filterParams = `keywords=${encodeURIComponent(filterValue)}`;
+    let filterParams = "";
+
+    if (filterValue.trim() !== "") {
+      filterParams += `keywords=${encodeURIComponent(filterValue)}`;
+    }
 
     if (selectedBrands.length > 0) {
-      filterParams += `${selectedBrands.join(",")}`;
+      filterParams += filterParams !== "" ? "&" : "";
+      filterParams += `brands=${selectedBrands.join(",")}`;
     }
 
     onFilterChange(filterParams);
