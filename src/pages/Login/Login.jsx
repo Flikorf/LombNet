@@ -3,6 +3,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useUser } from "../../components/UserContext";
 import styles from "./Login.module.css";
+import API_BASE_URL from "../../apiConfig";
 
 const Login = () => {
   const [userData, setUserData] = useState({
@@ -33,7 +34,7 @@ const Login = () => {
     try {
       // Используем значение пароля с задержкой
       const response = await axios.post(
-        "https://localhost:7211/api/Authorization/Login",
+        `${API_BASE_URL}/api/Authorization/Login`,
         { ...userData, password: passwordWithDelay }
       );
 

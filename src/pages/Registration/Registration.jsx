@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import styles from "./Registration.module.css";
 import Modal from "../../components/Modal/Modal";
+import API_BASE_URL from "../../apiConfig";
 
 const Registration = () => {
   const [userData, setUserData] = useState({
@@ -40,7 +41,7 @@ const Registration = () => {
 
     try {
       const response = await axios.post(
-        "https://localhost:7211/api/Authorization/Registration",
+        `${API_BASE_URL}/api/Authorization/Registration`,
         userData
       );
 

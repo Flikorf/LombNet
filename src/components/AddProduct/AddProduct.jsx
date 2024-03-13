@@ -1,5 +1,6 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
+import API_BASE_URL from "../../apiConfig";
 
 const AddProduct = ({ onProductAdded }) => {
   const [formData, setFormData] = useState({
@@ -20,7 +21,6 @@ const AddProduct = ({ onProductAdded }) => {
   const [requestToken, setRequestToken] = useState(null);
   const [categoryError, setCategoryError] = useState(false);
 
-  // Получение токена из localStorage
   const token = localStorage.getItem("authToken");
 
   if (!token) {
@@ -52,16 +52,13 @@ const AddProduct = ({ onProductAdded }) => {
         formDataToSend.append(key, formData[key]);
       }
 
-      const response = await fetch(
-        "https://localhost:7211/api/Fuji/addProduct",
-        {
-          method: "POST",
-          body: formDataToSend,
-          headers: {
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NWU4NGQ5MzEyMzZjMTU3MTAxYjJhMzkiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJVc2VyIiwiZXhwIjoxNzEwMzE3NDU4LCJpc3MiOiJNeUF1dGhTZXJ2ZXIiLCJhdWQiOiJNeUF1dGhDbGllbnQifQ.jp_fvRqH2vPznny2gpuFP5BJK8Yz_VDkpO57X-tn_D0`, // Правильное свойство
-          },
-        }
-      );
+      const response = await fetch(`${API_BASE_URL}/api/Fuji/addProduct`, {
+        method: "POST",
+        body: formDataToSend,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
       const responseToken = response.headers.get("Authorization");
       setRequestToken(responseToken);

@@ -3,6 +3,7 @@ import AddProduct from "../../components/AddProduct/AddProduct";
 import FilterComponent from "../../components/FilterComponent/FilterComponent";
 import styles from "./Phone.module.css";
 import PropTypes from "prop-types";
+import API_BASE_URL from "../../apiConfig";
 
 const Phone = ({ addedProductName }) => {
   const [allProducts, setAllProducts] = useState([]);
@@ -22,7 +23,7 @@ const Phone = ({ addedProductName }) => {
 
   const fetchAllProducts = async () => {
     try {
-      const response = await fetch("https://localhost:7211/api/Fuji/products", {
+      const response = await fetch(`${API_BASE_URL}:7211/api/Fuji/products`, {
         headers: {
           Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NWU4NGQ5MzEyMzZjMTU3MTAxYjJhMzkiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJVc2VyIiwiZXhwIjoxNzEwMzE3NDU4LCJpc3MiOiJNeUF1dGhTZXJ2ZXIiLCJhdWQiOiJNeUF1dGhDbGllbnQifQ.jp_fvRqH2vPznny2gpuFP5BJK8Yz_VDkpO57X-tn_D0`,
         },
