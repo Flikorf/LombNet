@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import { useState, useEffect } from "react";
 import AddProduct from "../../components/AddProduct/AddProduct";
 import FilterComponent from "../../components/FilterComponent/FilterComponent";
@@ -135,3 +136,8 @@ Phone.propTypes = {
 };
 
 export default Phone;
+=======
+export default function Phone() {
+  return <h1>Phone</h1>;
+}
+>>>>>>> Stashed changes
