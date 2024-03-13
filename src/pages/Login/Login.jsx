@@ -34,11 +34,7 @@ const Login = () => {
       // Используем значение пароля с задержкой
       const response = await axios.post(
         "https://localhost:7211/api/Authorization/Login",
-<<<<<<< Updated upstream
         { ...userData, password: passwordWithDelay }
-=======
-        userData
->>>>>>> Stashed changes
       );
 
       const authToken = response.data.token;
