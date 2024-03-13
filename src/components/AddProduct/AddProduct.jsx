@@ -14,7 +14,11 @@ const AddProduct = ({ onProductAdded }) => {
     image: null,
   });
 
+  const categories = ["telephone", "laptop", "tablet", "headphones"];
+  const brands = ["Iphone", "Samsung", "Xiaomi", "OPPO", "Nokia"];
+
   const [requestToken, setRequestToken] = useState(null);
+  const [categoryError, setCategoryError] = useState(false);
 
   // Получение токена из localStorage
   const token = localStorage.getItem("authToken");
@@ -36,6 +40,11 @@ const AddProduct = ({ onProductAdded }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (!formData.category) {
+      setCategoryError(true);
+      return;
+    }
+
     try {
       const formDataToSend = new FormData();
 
@@ -49,7 +58,7 @@ const AddProduct = ({ onProductAdded }) => {
           method: "POST",
           body: formDataToSend,
           headers: {
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NWU4NGQ5MzEyMzZjMTU3MTAxYjJhMzkiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJVc2VyIiwiZXhwIjoxNzEwMjQ4OTg4LCJpc3MiOiJNeUF1dGhTZXJ2ZXIiLCJhdWQiOiJNeUF1dGhDbGllbnQifQ.ngEQC_SSAFXVouSrrpWlOhToFRtmyNte6xlGSi5Fago`, // Правильное свойство
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NWU4NGQ5MzEyMzZjMTU3MTAxYjJhMzkiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJVc2VyIiwiZXhwIjoxNzEwMzE3NDU4LCJpc3MiOiJNeUF1dGhTZXJ2ZXIiLCJhdWQiOiJNeUF1dGhDbGllbnQifQ.jp_fvRqH2vPznny2gpuFP5BJK8Yz_VDkpO57X-tn_D0`, // Правильное свойство
           },
         }
       );
@@ -86,12 +95,37 @@ const AddProduct = ({ onProductAdded }) => {
       </label>
       <label>
         Category:
-        <input
-          type="text"
+        <select
           name="category"
           value={formData.category}
           onChange={handleChange}
-        />
+          className={categoryError ? "error" : ""}
+        >
+          <option value="" disabled>
+            Выберите категорию
+          </option>
+          {categories.map((category, index) => (
+            <option key={index} value={category}>
+              {category}
+            </option>
+          ))}
+        </select>
+        {categoryError && (
+          <p className="error">Пожалуйста, выберите категорию.</p>
+        )}
+      </label>
+      <label>
+        Brand:
+        <select name="brand" value={formData.brand} onChange={handleChange}>
+          <option value="" disabled>
+            Выберите бренд
+          </option>
+          {brands.map((brand, index) => (
+            <option key={index} value={brand}>
+              {brand}
+            </option>
+          ))}
+        </select>
       </label>
       <label>
         Description:
@@ -107,15 +141,6 @@ const AddProduct = ({ onProductAdded }) => {
           type="number"
           name="price"
           value={formData.price}
-          onChange={handleChange}
-        />
-      </label>
-      <label>
-        Brand:
-        <input
-          type="text"
-          name="brand"
-          value={formData.brand}
           onChange={handleChange}
         />
       </label>

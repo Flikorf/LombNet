@@ -16,6 +16,9 @@ const Header = () => {
           <img src="logo.svg" alt="" />
           <div>LombNet</div>
         </Link>
+        <Link to="/admin">
+          <div>Admin</div>
+        </Link>
         {user ? (
           <>
             <span>{user.username}</span>

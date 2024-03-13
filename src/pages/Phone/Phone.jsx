@@ -9,9 +9,11 @@ const Phone = ({ addedProductName }) => {
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [token, setToken] = useState(localStorage.getItem("authToken") || "");
   const [filterParams, setFilterParams] = useState("");
+  const [productAdded, setProductAdded] = useState(false); // Добавлен ли товар
 
   const handleProductAdded = (productName) => {
-    // Логика обновления состояния
+    // Устанавливаем флаг добавления товара в true
+    setProductAdded(true);
   };
 
   const handleFilterChange = (newFilterParams) => {
@@ -22,7 +24,7 @@ const Phone = ({ addedProductName }) => {
     try {
       const response = await fetch("https://localhost:7211/api/Fuji/products", {
         headers: {
-          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NWU4NGQ5MzEyMzZjMTU3MTAxYjJhMzkiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJVc2VyIiwiZXhwIjoxNzEwMjQ4OTg4LCJpc3MiOiJNeUF1dGhTZXJ2ZXIiLCJhdWQiOiJNeUF1dGhDbGllbnQifQ.ngEQC_SSAFXVouSrrpWlOhToFRtmyNte6xlGSi5Fago`,
+          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NWU4NGQ5MzEyMzZjMTU3MTAxYjJhMzkiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJVc2VyIiwiZXhwIjoxNzEwMzE3NDU4LCJpc3MiOiJNeUF1dGhTZXJ2ZXIiLCJhdWQiOiJNeUF1dGhDbGllbnQifQ.jp_fvRqH2vPznny2gpuFP5BJK8Yz_VDkpO57X-tn_D0`,
         },
       });
 
@@ -75,11 +77,18 @@ const Phone = ({ addedProductName }) => {
 
   useEffect(() => {
     fetchAllProducts();
-  }, []);
+  }, [productAdded]); // Зависимость изменена на productAdded
 
   useEffect(() => {
     fetchFilteredProducts();
   }, [filterParams, token]);
+
+  useEffect(() => {
+    // При добавлении товара сбрасываем флаг обратно в false
+    if (productAdded) {
+      setProductAdded(false);
+    }
+  }, [productAdded]);
 
   return (
     <div className={styles.productPage}>
